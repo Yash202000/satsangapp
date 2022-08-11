@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "592673308396",
+    "project_id": "bhaktimela-f7646",
+    "storage_bucket": "bhaktimela-f7646.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592673308396:android:f4cf56b8faaeadf2f62fc9",
+        "android_client_info": {
+          "package_name": "com.example.satsangapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592673308396-3dbr9rd7hqcat90kfqbibtd11e9q45ks.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.satsangapp",
+            "certificate_hash": "155b861773fd0cd02b2710c7799bccea71eb225e"
+          }
+        },
+        {
+          "client_id": "592673308396-f2f39ceqb5vd74u9gcqml4o7loup99jl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoJFsQxOqdO40p1s7fgrOhm9ckgCLcs4c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592673308396-f2f39ceqb5vd74u9gcqml4o7loup99jl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
