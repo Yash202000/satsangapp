@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:satsangapp/models/channel_info.dart';
+import 'package:satsangapp/models/videos_list.dart';
 import 'package:satsangapp/utils/constants.dart';
 
 class Hitapage extends StatefulWidget {
@@ -33,6 +34,28 @@ class _HitapageState extends State<Hitapage> {
     //     etag: '', kind: '', nextPageToken: '', pageInfo: null, videos: []);
     // _videosList.videos = [];
     getChannelInfo();
+  }
+
+  getVideosList({required String playListId, required String pageToken}) async {
+    Map<String, String> parameters = {
+      'part': 'snippet',
+      'playlistId': playListId,
+      'maxResults': '8',
+      'pageToken': pageToken,
+      'key': Constants.API_KEY,
+    };
+    Map<String, String> headers = {
+      HttpHeaders.contentTypeHeader: 'application/json',
+    };
+    Uri uri = Uri.https(
+      'www.googleapis.com',
+      '/youtube/v3/playlistItems',
+      parameters,
+    );
+    Response response = await http.get(uri, headers: headers);
+    print(response.body);
+    Videolists videosList = videolistsFromJson(response.body);
+    return videosList;
   }
 
   getChannelInfo() async {
@@ -110,6 +133,22 @@ class _HitapageState extends State<Hitapage> {
                     ),
                   ],
                 )),
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue.shade600)),
+              onPressed: () {
+                getVideosList(
+                    playListId: _playListId, pageToken: _nextPageToken);
+              },
+              child: Padding(
+                padding: EdgeInsets.all(14),
+                child: Text(
+                  'Verify',
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
           ]),
         ));
   }

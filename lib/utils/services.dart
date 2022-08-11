@@ -32,7 +32,7 @@ class Services {
     return channelInfo;
   }
 
-  static Future<VideosList> getVideosList(
+  static Future<Videolists> getVideosList(
       {required String playListId, required String pageToken}) async {
     Map<String, String> parameters = {
       'part': 'snippet',
@@ -51,7 +51,7 @@ class Services {
     );
     Response response = await http.get(uri, headers: headers);
     // print(response.body);
-    VideosList videosList = videosListFromJson(response.body);
+    Videolists videosList = videolistsFromJson(response.body);
     return videosList;
   }
 }

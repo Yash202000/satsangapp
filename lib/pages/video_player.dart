@@ -21,7 +21,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     super.initState();
     _isPlayerReady = false;
     _controller = YoutubePlayerController(
-      initialVideoId: widget.videoItem.video.resourceId.videoId,
+      initialVideoId: widget.videoItem.snippet.resourceId.videoId,
       flags: YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
@@ -50,9 +50,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.videoItem.video.title),
-      ),
+      // appBar: AppBar(
+      //   title: Text(widget.videoItem.video.title),
+      // ),
       body: Container(
         child: YoutubePlayer(
           controller: _controller,

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../screens/home_screen.dart';
-
 class Otp extends StatefulWidget {
   String verificationid;
   Otp({required this.verificationid});

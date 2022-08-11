@@ -1,34 +1,35 @@
 // To parse this JSON data, do
 //
-//     final videosList = videosListFromJson(jsonString);
+//     final videolists = videolistsFromJson(jsonString);
 
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
-VideosList videosListFromJson(String str) =>
-    VideosList.fromJson(json.decode(str));
+Videolists videolistsFromJson(String str) =>
+    Videolists.fromJson(json.decode(str));
 
-String videosListToJson(VideosList data) => json.encode(data.toJson());
+String videolistsToJson(Videolists data) => json.encode(data.toJson());
 
-class VideosList {
-  VideosList({
+class Videolists {
+  Videolists({
     required this.kind,
     required this.etag,
     required this.nextPageToken,
-    required this.videos,
+    required this.items,
     required this.pageInfo,
   });
 
   String kind;
   String etag;
   String nextPageToken;
-  List<VideoItem> videos;
+  List<VideoItem> items;
   PageInfo pageInfo;
 
-  factory VideosList.fromJson(Map<String, dynamic> json) => VideosList(
+  factory Videolists.fromJson(Map<String, dynamic> json) => Videolists(
         kind: json["kind"],
         etag: json["etag"],
         nextPageToken: json["nextPageToken"],
-        videos: List<VideoItem>.from(
+        items: List<VideoItem>.from(
             json["items"].map((x) => VideoItem.fromJson(x))),
         pageInfo: PageInfo.fromJson(json["pageInfo"]),
       );
@@ -37,7 +38,7 @@ class VideosList {
         "kind": kind,
         "etag": etag,
         "nextPageToken": nextPageToken,
-        "items": List<dynamic>.from(videos.map((x) => x.toJson())),
+        "items": List<dynamic>.from(items.map((x) => x.toJson())),
         "pageInfo": pageInfo.toJson(),
       };
 }
@@ -47,26 +48,26 @@ class VideoItem {
     required this.kind,
     required this.etag,
     required this.id,
-    required this.video,
+    required this.snippet,
   });
 
   String kind;
   String etag;
   String id;
-  Video video;
+  Video snippet;
 
   factory VideoItem.fromJson(Map<String, dynamic> json) => VideoItem(
         kind: json["kind"],
         etag: json["etag"],
         id: json["id"],
-        video: Video.fromJson(json["snippet"]),
+        snippet: Video.fromJson(json["snippet"]),
       );
 
   Map<String, dynamic> toJson() => {
         "kind": kind,
         "etag": etag,
         "id": id,
-        "snippet": video.toJson(),
+        "snippet": snippet.toJson(),
       };
 }
 
@@ -81,6 +82,8 @@ class Video {
     required this.playlistId,
     required this.position,
     required this.resourceId,
+    required this.videoOwnerChannelTitle,
+    required this.videoOwnerChannelId,
   });
 
   DateTime publishedAt;
@@ -92,6 +95,8 @@ class Video {
   String playlistId;
   int position;
   ResourceId resourceId;
+  String videoOwnerChannelTitle;
+  String videoOwnerChannelId;
 
   factory Video.fromJson(Map<String, dynamic> json) => Video(
         publishedAt: DateTime.parse(json["publishedAt"]),
@@ -103,6 +108,8 @@ class Video {
         playlistId: json["playlistId"],
         position: json["position"],
         resourceId: ResourceId.fromJson(json["resourceId"]),
+        videoOwnerChannelTitle: json["videoOwnerChannelTitle"],
+        videoOwnerChannelId: json["videoOwnerChannelId"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -115,6 +122,8 @@ class Video {
         "playlistId": playlistId,
         "position": position,
         "resourceId": resourceId.toJson(),
+        "videoOwnerChannelTitle": videoOwnerChannelTitle,
+        "videoOwnerChannelId": videoOwnerChannelId,
       };
 }
 
@@ -143,32 +152,22 @@ class Thumbnails {
     required this.thumbnailsDefault,
     required this.medium,
     required this.high,
-    required this.standard,
-    required this.maxres,
   });
 
   Default thumbnailsDefault;
   Default medium;
   Default high;
-  Default standard;
-  Default maxres;
 
   factory Thumbnails.fromJson(Map<String, dynamic> json) => Thumbnails(
         thumbnailsDefault: Default.fromJson(json["default"]),
         medium: Default.fromJson(json["medium"]),
         high: Default.fromJson(json["high"]),
-        standard: Default.fromJson(json["standard"]),
-        // standard: null == json["standard"] ? null : Default.fromJson(json["standard"])
-        maxres: Default.fromJson(json["maxres"]),
-        // null == json["maxres"] ? null : Default.fromJson(json["maxres"])
       );
 
   Map<String, dynamic> toJson() => {
         "default": thumbnailsDefault.toJson(),
         "medium": medium.toJson(),
         "high": high.toJson(),
-        "standard": standard.toJson(),
-        "maxres": maxres.toJson(),
       };
 }
 
